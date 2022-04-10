@@ -1,0 +1,2 @@
+# Searchy
+PHP Search Engine
