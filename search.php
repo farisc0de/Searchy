@@ -68,7 +68,7 @@ $sites = $se->findSites($keyword, $page);
             <div class="d-flex justify-content-between">
                 <p>You searched for <b>"<?php echo $keyword ?>"</b></p>
 
-                <p><b><?php echo count($sites['results']); ?></b> results found</p>
+                <p><b><?php echo $sites['count']; ?></b> results found</p>
             </div>
         </div>
 

@@ -46,15 +46,17 @@ class SearchEngine
 
         $this->db->execute();
 
-        $number_of_page = ceil($this->db->rowCount() / $results_per_page);
+        $number_of_records = $this->db->rowCount();
 
-        $this->db->query("SELECT * FROM sites WHERE title LIKE :name OR keywords LIKE :name OR blurb LIKE :name LIMIT $page_first_result, $results_per_page");
+        $number_of_page = ceil($number_of_records / $results_per_page);
+
+        $this->db->query("SELECT * FROM sites WHERE title LIKE :name OR keywords LIKE :name OR blurb LIKE :name OR url LIKE :name LIMIT $page_first_result, $results_per_page");
 
         $this->db->bind(':name', "%{$name}%", PDO::PARAM_STR);
 
         $this->db->execute();
 
-        return ['results' => $this->db->resultset(), 'pages' => $number_of_page];
+        return ['results' => $this->db->resultset(), 'count' => $number_of_records, 'pages' => $number_of_page];
     }
 
     public function checkIfSiteExist($url)

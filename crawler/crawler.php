@@ -7,10 +7,6 @@ include_once '../src/SearchEngine.php';
 
 $httpClient = new \GuzzleHttp\Client();
 
-$extractedTitles = [];
-
-$extractedDesc = [];
-
 $file = fopen('urls.txt', "r");
 $text = trim(fread($file, filesize('urls.txt')));
 $urls = explode(PHP_EOL, $text);
@@ -57,6 +53,10 @@ foreach ($urls as $url) {
         $keyword = $k->textContent;
     }
 
+    if ($title == '') {
+        $title = $url;
+    }
+
     array_push($indexed_sites, [
         'title' => $title,
         'blurb' => $description,
@@ -64,7 +64,6 @@ foreach ($urls as $url) {
         'url' => $url
     ]);
 }
-
 
 $db = new Database($config);
 $index = new SearchEngine($db);

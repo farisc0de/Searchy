@@ -17,6 +17,27 @@ PHP Search Engine
 5. Run `$ php crawler.php `
 6. Enjoy
 
+## Screenshots
+
+```php
+$ php crawler.php
+Indexing https://www.google.com/
+Indexing https://www.youtube.com/
+Indexing https://www.facebook.com/
+Indexing https://www.baidu.com/
+Indexing https://www.wikipedia.org/
+Indexing https://twitter.com/
+Indexing https://www.yahoo.com/
+Indexing https://www.instagram.com/
+Indexing Finished
+```
+
+![](https://i.imgur.com/M5ZMCcJ.png)
+
+![](https://i.imgur.com/AS0b4VT.png)
+
+![](https://i.imgur.com/DyPSiwU.png)
+
 ## License
 
 MIT
