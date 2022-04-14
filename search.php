@@ -32,7 +32,6 @@ $sites = $se->findSites($keyword, $page);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Searchy - <?php echo $keyword; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    </script>
 </head>
 
 <body>
@@ -50,6 +49,9 @@ $sites = $se->findSites($keyword, $page);
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="add.php">Add Site</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="crawl.php">Crawl Site</a>
                     </li>
                 </ul>
             </div>

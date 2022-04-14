@@ -11,6 +11,10 @@ class SearchEngine
 
     public function addSite($site)
     {
+        if ($this->checkIfSiteExist($site['url'])) {
+            return false;
+        }
+
         $this->db->query("INSERT INTO sites (title, blurb, keywords, url) VALUES (:title, :blurb, :keywords, :url)");
 
         $this->db->bind(":title", $site['title'], PDO::PARAM_STR);
@@ -18,12 +22,16 @@ class SearchEngine
         $this->db->bind(":keywords", $site['keywords'], PDO::PARAM_STR);
         $this->db->bind(":url", $site['url'], PDO::PARAM_STR);
 
-        $this->db->execute();
+        return $this->db->execute();
     }
 
     public function addSites($sites)
     {
         foreach ($sites as $site) {
+            if ($this->checkIfSiteExist($site['url'])) {
+                return false;
+            }
+
             $this->db->query("INSERT INTO sites (title, blurb, keywords, url) VALUES (:title, :blurb, :keywords, :url)");
 
             $this->db->bind(":title", $site['title'], PDO::PARAM_STR);
@@ -31,7 +39,7 @@ class SearchEngine
             $this->db->bind(":keywords", $site['keywords'], PDO::PARAM_STR);
             $this->db->bind(":url", $site['url'], PDO::PARAM_STR);
 
-            $this->db->execute();
+            return $this->db->execute();
         }
     }
 
@@ -40,7 +48,7 @@ class SearchEngine
         $results_per_page = 10;
         $page_first_result = ($page - 1) * $results_per_page;
 
-        $this->db->query("SELECT * FROM sites WHERE title LIKE :name OR keywords LIKE :name OR blurb LIKE :name");
+        $this->db->query("SELECT * FROM sites WHERE title LIKE :name OR keywords LIKE :name OR blurb LIKE :name OR url LIKE :name");
 
         $this->db->bind(':name', "%{$name}%", PDO::PARAM_STR);
 
