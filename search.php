@@ -10,11 +10,7 @@ if (!isset($_GET['k'])) {
 
 $keyword = $_GET['k'];
 
-if (!isset($_GET['page'])) {
-    $page = 1;
-} else {
-    $page = $_GET['page'];
-}
+$page = (!isset($_GET['page'])) ? 1 : $_GET['page'];
 
 $db = new Database($config);
 $se = new SearchEngine($db);
